@@ -1,0 +1,344 @@
+[{
+        "title": "Finance",
+        "children":[{
+                "title": "Arbitrage"
+            },
+            {
+                "title": "Capital (economics)"
+            },
+            {
+                "title": "Capital asset pricing model"
+            },
+            {
+                "title": "Cash flow"
+            },
+            {
+                "title": "Cash flow matching"
+            },
+            {
+                "title": "Debt",
+                "children": [{
+                        "title": "Default"
+                    },
+                    {
+                        "title": "Consumer debt"
+                    },
+                    {
+                        "title": "Debt consolidation"
+                    },
+                    {
+                        "title": "Debt settlement"
+                    },
+                    {
+                        "title": "Credit counseling"
+                    },
+                    {
+                        "title": "Bankruptcy"
+                    },
+                    {
+                        "title": "Debt diet"
+                    },
+                    {
+                        "title": "Debt-snowball method"
+                    },
+                    {
+                        "title": "Debt of developing countries"
+                    }
+                ]
+            },
+            {
+                "title": "Discounted cash flow"
+            },
+            {
+                "title": "Financial capital",
+                "children": [{
+                    "title": "Funding"
+                }]
+            },
+            {
+                "title": "Financial modeling"
+            },
+            {
+                "title": "Entrepreneur",
+                "children": [{
+                    "title": "Entrepreneurship"
+                }]
+            },
+
+            {
+                "title": "Fixed income analysis"
+            },
+            {
+                "title": "Gap financing"
+            },
+            {
+                "title": "Global financial system"
+            },
+            {
+                "title": "Hedge",
+                "children": [{
+                    "title": "Basis risk"
+                }]
+            },
+            {
+                "title": "Interest rate",
+                "children": [{
+                        "title": "Risk-free interest rate"
+                    },
+                    {
+                        "title": "Term structure of interest rates"
+                    }
+                ]
+            },
+            {
+                "title": "Short rate model",
+                "children": [{
+                        "title": "Vasicek model"
+                    },
+                    {
+                        "title": "Cox–Ingersoll–Ross model"
+                    },
+                    {
+                        "title": "Hull–White model"
+                    },
+                    {
+                        "title": "Chen model"
+                    },
+                    {
+                        "title": "Black–Derman–Toy model"
+                    }
+                ]
+            },
+            {
+                "title": "Interest",
+                "children": [{
+                        "title": "Effective interest rate"
+                    },
+                    {
+                        "title": "Nominal interest rate"
+                    },
+                    {
+                        "title": "Interest rate basis"
+                    },
+                    {
+                        "title": "Fisher equation"
+                    },
+                    {
+                        "title": "Crowding out"
+                    },
+                    {
+                        "title": "Annual percentage rate"
+                    },
+                    {
+                        "title": "Interest coverage ratio"
+                    }
+                ]
+            },
+            {
+                "title": "Investment",
+                "children": [{
+                        "title": "Foreign direct investment"
+                    },
+                    {
+                        "title": "Gold as an investment"
+                    },
+                    {
+                        "title": "Over-investing"
+                    }
+                ]
+            },
+            {
+                "title": "Leverage"
+            },
+            {
+                "title": "Long (finance)"
+            },
+            {
+                "title": "Liquidity"
+            },
+            {
+                "title": "Margin (finance)"
+            },
+            {
+                "title": "Mark to market"
+            },
+            {
+                "title": "Market Impact"
+            },
+            {
+                "title": "Medium of exchange"
+            },
+            {
+                "title": "Microcredit"
+            },
+            {
+                "title": "Money",
+                "children": [{
+                        "title": "Money creation"
+                    },
+                    {
+                        "title": "Currency"
+                    },
+                    {
+                        "title": "Coin"
+                    },
+                    {
+                        "title": "Banknote"
+                    },
+                    {
+                        "title": "Counterfeit"
+                    },
+                    {
+                        "title": "History of money"
+                    },
+                    {
+                        "title": "Monetary reform"
+                    }
+                ]
+            },
+            {
+                "title": "Portfolio",
+                "children": [{
+                        "title": "Modern portfolio theory"
+                    },
+                    {
+                        "title": "Mutual fund separation theorem"
+                    },
+                    {
+                        "title": "Post-modern portfolio theory"
+                    }
+                ]
+            },
+            {
+                "title": "Reference rate",
+                "children": [{
+                    "title": "Reset"
+                }]
+            },
+            {
+                "title": "Return",
+                "children": [{
+                        "title": "Absolute return"
+                    },
+                    {
+                        "title": "Investment performance"
+                    },
+                    {
+                        "title": "Relative return"
+                    }
+                ]
+            },
+            {
+                "title": "Risk",
+                "children": [{
+                        "title": "Financial risk"
+                    },
+                    {
+                        "title": "Risk management",
+                        "children": [{
+                                "title": "Financial risk management"
+                            },
+                            {
+                                "title": "Uncompensated risk"
+                            }
+                        ]
+                    },
+                    {
+                        "title": "Risk measure",
+                        "children": [{
+                                "title": "Coherent risk measure"
+                            },
+                            {
+                                "title": "Deviation risk measure"
+                            },
+                            {
+                                "title": "Distortion risk measure"
+                            },
+                            {
+                                "title": "Spectral risk measure"
+                            },
+                            {
+                                "title": "Value at risk",
+                                "children": [{
+                                        "title": "Expected shortfall"
+                                    },
+                                    {
+                                        "title": "Entropic value at risk"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "Scenario analysis"
+            },
+            {
+                "title": "Short (finance)"
+            },
+            {
+                "title": "Speculation",
+                "children": [{
+                    "title": "Day trading"
+                }]
+            },
+            {
+                "title": "Position trader"
+            },
+            {
+                "title": "Spread trade"
+            },
+            {
+                "title": "Standard of deferred payment"
+            },
+            {
+                "title": "Store of value"
+            },
+            {
+                "title": "Time horizon"
+            },
+            {
+                "title": "Time value of money",
+                "children": [{
+                        "title": "Discounting"
+                    },
+                    {
+                        "title": "Present value"
+                    },
+                    {
+                        "title": "Future value"
+                    },
+                    {
+                        "title": "Net present value"
+                    },
+                    {
+                        "title": "Internal rate of return"
+                    },
+                    {
+                        "title": "Modified internal rate of return"
+                    },
+                    {
+                        "title": "Annuity"
+                    },
+                    {
+                        "title": "Perpetuity"
+                    }
+                ]
+            },
+            {
+                "title": "Unit of account"
+            },
+            {
+                "title": "Volatility"
+            },
+            {
+                "title": "Yield"
+            },
+            {
+                "title": "Yield curve"
+            }
+        ]
+    }
+
+]

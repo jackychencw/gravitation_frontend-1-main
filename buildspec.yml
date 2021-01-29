@@ -1,0 +1,28 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+  build:
+    commands:
+      - CONTAINER_NAME="gravitation-frontend"
+      - IMG_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/gravitation:$IMAGE_TAG
+      - echo Build started on `date`
+      - echo Building the Docker image...          
+      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker tag $IMAGE_REPO_NAME:$IMAGE_TAG $IMG_URI
+      - printf '[{"name":"container_name","imageUri":"img_uri"}]' > imagedefinitions.json
+      - sed -i -e "s|container_name|$CONTAINER_NAME|g" imagedefinitions.json
+      - sed -i -e "s|img_uri|$IMG_URI|g" imagedefinitions.json
+      - cat imagedefinitions.json
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push $IMG_URI
+
+artifacts:
+    files:
+      - imagedefinitions.json

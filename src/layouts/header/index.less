@@ -1,0 +1,219 @@
+.admin-header{
+  padding: 0;
+  z-index: 2;
+  box-shadow: @shadow-down;
+  // box-shadow: white;
+  position: relative;
+  background: @base-bg-color;
+  &.dark{
+    background: @header-bg-color-dark;
+    color: white;
+  }
+  .admin-header-wide{
+    &.head{
+      max-width: 1400px;
+      margin: auto;
+    }
+    &.side{
+      padding-right: 12px;
+    }
+    .logo {
+      position: absolute;
+      left: 2%;
+      height: 64px;
+      line-height: 64px;
+      vertical-align: top;
+      display: inline-block;
+      padding: 0 12px 0 24px;
+      cursor: pointer;
+      font-size: 20px;
+      color: inherit;
+      #logotitle{
+        font-family: Helvetica;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 32px;
+
+        color: #000000;
+      }
+      #logoimg{
+        left: 0%;
+        right: 78.12%;
+        top: 0%;
+        bottom: 0%;
+        width: 60px;
+      }
+      &.pc{
+        padding: 0 12px 0 0;
+      }
+      img {
+        vertical-align: middle;
+      }
+      h1{
+        color: inherit;
+        display: inline-block;
+        font-size: 16px;
+      }
+    }
+    .trigger {
+      font-size: 20px;
+      line-height: 64px;
+      padding: 0 24px;
+      cursor: pointer;
+      transition: color .3s;
+      &:hover{
+        color: @primary-color;
+      }
+    }
+    .admin-header-menu{
+      display: inline-block;
+    }
+    .admin-header-right{
+      float: right;
+      display: flex;
+      color: inherit;
+      .header-item{
+        color: inherit;
+        padding: 0 12px;
+        cursor: pointer;
+        align-self: center;
+        a{
+          color: inherit;
+          i{
+            font-size: 16px;
+          }
+        }
+      }
+      each(@theme-list, {
+        &.@{value} .header-item{
+          &:hover{
+            @class: ~'hover-bg-color-@{value}';
+            background-color: @class;
+          }
+        }
+      })
+    }
+  }
+}
+
+.search-header{
+  padding: 0;
+  z-index: 2;
+  box-shadow: @shadow-down;
+  // box-shadow: white;
+  position: relative;
+  background: @base-bg-color;
+  &.dark{
+    background: @header-bg-color-dark;
+    color: white;
+  }
+  .search-header-wide{
+    &.head{
+      max-width: 1400px;
+      margin: auto;
+    }
+    &.side{
+      padding-right: 12px;
+    }
+    .logo {
+      position: absolute;
+      left: 2%;
+      height: 64px;
+      line-height: 64px;
+      vertical-align: top;
+      display: inline-block;
+      padding: 0 12px 0 24px;
+      cursor: pointer;
+      font-size: 20px;
+      color: inherit;
+      @media screen and (max-width: 1400px) {
+        #logoimg {
+            display: none !important;
+        }
+      }
+      #logoimg{
+        left: 0%;
+        right: 78.12%;
+        top: 0%;
+        bottom: 0%;
+        width: 60px;
+      }
+      &.pc{
+        padding: 0 12px 0 0;
+      }
+      img {
+        vertical-align: middle;
+      }
+      h1{
+        color: inherit;
+        display: inline-block;
+        font-size: 16px;
+      }
+    }
+    #search{
+      position: absolute;
+      float:left;
+      left: 6%;
+      height: 64px;
+      line-height: 64px;
+      width: 40%;
+      vertical-align: top;
+      display: inline-block;
+      #search-bar{
+        // position: absolute;
+        // float:left;
+        // left: 6%;
+        // height: 64px;
+        // line-height: 64px;
+        // width: 40%;
+        margin-right: 2%;
+      }
+      #refresh{
+        position: absolute;
+        float:left;
+        vertical-align: middle;
+        // line-height: 64px;
+        
+      }
+    }
+    .trigger {
+      font-size: 20px;
+      line-height: 64px;
+      padding: 0 24px;
+      cursor: pointer;
+      transition: color .3s;
+      &:hover{
+        color: @primary-color;
+      }
+    }
+    .search-header-menu{
+      display: inline-block;
+    }
+    .search-header-right{
+      float: right;
+      display: flex;
+      color: inherit;
+      .header-item{
+        color: inherit;
+        padding: 0 12px;
+        cursor: pointer;
+        align-self: center;
+        a{
+          color: inherit;
+          i{
+            font-size: 16px;
+          }
+        }
+      }
+      each(@theme-list, {
+        &.@{value} .header-item{
+          &:hover{
+            @class: ~'hover-bg-color-@{value}';
+            background-color: @class;
+          }
+        }
+      })
+    }
+  }
+}
