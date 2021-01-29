@@ -9,6 +9,12 @@ export default {
     routesI18n: {},
     dustbins: [],
     ...config,
+    history: {
+      article: {},
+      searchResultTitle: '',
+      searchTerm: '',
+      pageList: [],
+    },
   },
   mutations: {
     setDevice (state, isMobile) {

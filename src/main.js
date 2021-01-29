@@ -6,7 +6,8 @@ import 'ant-design-vue/dist/antd.css'
 import Antd from 'ant-design-vue'
 // import Viser from 'viser-vue'
 // import axios from 'axios'
-// import '@/mock'
+import '@/mock'
+import '@/store/modules/account'
 import store from './store'
 import PouchDB from 'pouchdb'
 // import 'animate.css/source/animate.css'
@@ -21,20 +22,21 @@ Vue.use(VueI18n)
 // Vue.use(Plugins)
 
 const i18n = new VueI18n({
-  locale: 'CN',
-  fallbackLocale: 'US',
-  silentFallbackWarn: true
+    locale: 'CN',
+    fallbackLocale: 'US',
+    silentFallbackWarn: true
 })
 
 new Vue({
-  router,
-  store,
-  i18n,
-  render: h => h(App),
-  mounted () {
-    let db = new PouchDB('adminDb')
-    db.get('currUser').then(doc => {
-      this.$store.commit('account/setUser', doc.user)
-    })
-  },
+    router,
+    store,
+    i18n,
+    render: h => h(App),
+    mounted() {
+        let db = new PouchDB('adminDb')
+        db.get('currUser').then(doc => {
+            this.$store.commit('account/setUser', doc.user)
+            doc
+        })
+    },
 }).$mount('#app')

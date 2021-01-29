@@ -1,23 +1,21 @@
 <template>
-  <a-layout :class="['admin-layout', fixedSideBar ? 'fixed-side-bar' : '']">
-    <drawer v-if="isMobile && isLogedIn" v-model="collapsed">
+  <a-layout :class="['button-header-layout', fixedSideBar ? 'fixed-side-bar' : '']">
+    <drawer v-if="isMobile" v-model="collapsed">
       <side-menu :theme="theme.mode" :menuData="menuData" :collapsed="false" :collapsible="false" @menuSelect="onMenuSelect"/>
     </drawer>
-    <side-menu :theme="theme.mode" v-else-if="layout === 'side'" :style="'display:' + (isLogedIn ? 'block' : 'none')" :menuData="menuData" :collapsed="collapsed" :collapsible="true" />
-    <drawer v-if="!hideSetting && isLogedIn" v-model="showSetting" placement="right">
+    <side-menu :theme="theme.mode" v-else-if="layout === 'side'" :menuData="menuData" :collapsed="collapsed" :collapsible="true" />
+    <drawer v-if="!hideSetting" v-model="showSetting" placement="right">
       <div class="setting" slot="handler">
         <a-icon :type="showSetting ? 'close' : 'setting'"/>
       </div>
       <setting />
     </drawer>
-    <a-layout class="admin-layout-main beauty-scroll">
-      <admin-header :style="headerStyle" :menuData="menuData"
-                    :collapsed="collapsed" @toggleCollapse="toggleCollapse"
-                    v-on:login-popup-header="handlePopup"/>
+    <a-layout class="button-header-layout-main beauty-scroll">
+      <button-header :style="headerStyle" :menuData="menuData" :collapsed="collapsed" @toggleCollapse="toggleCollapse"/>
       <a-layout-header v-if="fixedHeader"></a-layout-header>
-      <a-layout-content class="admin-layout-content">
-        <div :style="`min-height: ${minHeight}px; position: relative; padding-top: 20px`">
-          <slot/>
+      <a-layout-content class="button-header-layout-content">
+        <div :style="`min-height: ${minHeight}px; position: relative`">
+          <slot></slot>
         </div>
       </a-layout-content>
       <a-layout-footer style="padding: 0px">
@@ -28,7 +26,7 @@
 </template>
 
 <script>
-import AdminHeader from './header/AdminHeader'
+import ButtonHeader from './header/ButtonHeader'
 import PageFooter from './footer/PageFooter'
 import Drawer from '../components/tool/Drawer'
 import SideMenu from '../components/menu/SideMenu'
@@ -40,8 +38,8 @@ const minHeight = window.innerHeight - 64 - 24 - 122
 let menuData = []
 
 export default {
-  name: 'AdminLayout',
-  components: {Setting, SideMenu, Drawer, PageFooter, AdminHeader},
+  name: 'ButtonHeaderLayout',
+  components: {Setting, SideMenu, Drawer, PageFooter, ButtonHeader},
   data () {
     return {
       minHeight: minHeight,
@@ -58,9 +56,6 @@ export default {
   },
   computed: {
     ...mapState('setting', ['isMobile', 'theme', 'layout', 'footerLinks', 'copyright', 'fixedHeader', 'fixedSideBar', 'hideSetting']),
-    isLogedIn() {
-      return this.$store.state.account.user.name
-    },
     sideMenuWidth() {
       return this.collapsed ? '80px' : '256px'
     },
@@ -78,40 +73,30 @@ export default {
     onMenuSelect () {
       this.toggleCollapse()
     },
-    handlePopup() {
-      this.$emit('login-popup-layout')
-    }
   },
   beforeCreate () {
-    menuData = this.$router.options.routes.find((item) => item.path === '/').children.filter(e => {
-      if(this.$store.state.account.user.name) {
-        return e.path !== 'home'
-      } else {
-        return true
-      }
-    })
+    menuData = this.$router.options.routes.find((item) => item.path === '/').children
   }
 }
 </script>
 
 <style lang="less" scoped>
-  .admin-layout{
+  .button-header-layout{
     &.fixed-side-bar{
       height: 100vh;
-      .admin-layout-main{
+      .button-layout-main{
         overflow: scroll;
       }
     }
-    .admin-layout-main{
-      .admin-header{
+    .button-layout-main{
+      .button-header{
         top: 0;
         right: 0;
       }
     }
-    .admin-layout-content{
-      //padding: 24px 24px 0;
-      //min-height: auto;
-      overflow-y: auto;
+    .button-header-layout-content{
+      padding: 24px 24px 0;
+      min-height: auto;
       background-color: white;
     }
     .setting{

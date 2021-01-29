@@ -10,9 +10,12 @@
       </div>
       <setting />
     </drawer> -->
-    <search-header :style="headerStyle" :menuData="menuData" :collapsed="collapsed" @toggleCollapse="toggleCollapse"/>
+    <search-header :style="headerStyle" :menuData="menuData" @do-search="handleDoSearch" :collapsed="collapsed"
+                   @toggleCollapse="toggleCollapse" :searching="searching"/>
     <a-layout class="search-layout-main beauty-scroll">
-      <div style="overflow:scroll;"><slot v-if="showStructure" name="tree-view"></slot></div>
+      <div style="overflow:scroll;">
+        <slot v-if="showStructure" name="tree-view"></slot>
+      </div>
       <a-layout-header v-if="fixedHeader"></a-layout-header>
       <a-layout-content class="search-layout-content">
         <div :style="`min-height: ${minHeight}px; position: relative`">
@@ -23,19 +26,19 @@
       <a-layout-sider v-if="!isMobile" v-model="collapsed" theme="light" collapsible>
         <a-menu theme="light" :default-selected-keys="['1']" mode="inline">
           <a-menu-item key="1">
-            <a-icon type="file-text" />
+            <a-icon type="file-text"/>
             <span>Content List</span>
           </a-menu-item>
           <a-menu-item key="2" @click=onClickStructure>
-            <a-icon type="gold" />
+            <a-icon type="gold"/>
             <span>Structure List</span>
           </a-menu-item>
           <a-menu-item key="3">
-            <a-icon type="file" />
+            <a-icon type="file"/>
             <span>Local Files</span>
           </a-menu-item>
           <a-menu-item key="4">
-            <a-icon type="team" />
+            <a-icon type="team"/>
             <span>My Groups</span>
           </a-menu-item>
         </a-menu>
@@ -44,22 +47,22 @@
       <a-layout-sider v-else width="65px" theme="light">
         <a-menu mode="inline" theme="light" :default-selected-keys="['1']">
           <a-menu-item key="1">
-            <a-icon type="file-text" />
+            <a-icon type="file-text"/>
           </a-menu-item>
           <a-menu-item key="2" @click=onClickStructure>
-            <a-icon type="gold" />
+            <a-icon type="gold"/>
           </a-menu-item>
           <a-menu-item key="3">
-            <a-icon type="file" />
+            <a-icon type="file"/>
           </a-menu-item>
           <a-menu-item key="4">
-            <a-icon type="team" />
+            <a-icon type="team"/>
           </a-menu-item>
           <a-menu-item key="5">
-            <a-icon type="appstore" />
+            <a-icon type="appstore"/>
           </a-menu-item>
           <a-menu-item key="6">
-            <a-icon type="api" />
+            <a-icon type="api"/>
           </a-menu-item>
 
         </a-menu>
@@ -67,7 +70,7 @@
 
     </a-layout>
     <a-layout-footer style="padding: 0px">
-      <page-footer :link-list="footerLinks" :copyright="copyright" />
+      <page-footer :link-list="footerLinks" :copyright="copyright"/>
     </a-layout-footer>
   </a-layout>
 </template>
@@ -86,10 +89,12 @@ let menuData = []
 
 export default {
   name: 'AdminLayout',
-  components: { PageFooter, SearchHeader },
+  components: {PageFooter, SearchHeader},
   // components: { Setting, SideMenu, Drawer, PageFooter, SearchHeader},
-  data () {
+  props: ["searching"],
+  data() {
     return {
+      results: [],
       minHeight: minHeight,
       collapsed: false,
       menuData: menuData,
@@ -98,7 +103,7 @@ export default {
     }
   },
   provide() {
-    return{
+    return {
       layoutMinHeight: minHeight,
       menuI18n: require('@/router/i18n').default
     }
@@ -116,54 +121,62 @@ export default {
     }
   },
   methods: {
-    toggleCollapse () {
+    handleDoSearch(query) {
+      this.$emit("do-search", query)
+    },
+    toggleCollapse() {
       this.collapsed = !this.collapsed
     },
-    onMenuSelect () {
+    onMenuSelect() {
       this.toggleCollapse()
     },
     onClickStructure() {
       this.showStructure = !this.showStructure
     }
   },
-  beforeCreate () {
+  beforeCreate() {
     menuData = this.$router.options.routes.find((item) => item.path === '/').children
   }
 }
 </script>
 
 <style lang="less" scoped>
-  .search-layout{
-    &.fixed-side-bar{
-      height: 100vh;
-      .search-layout-main{
-        overflow: scroll;
-      }
-    }
-    .search-layout-main{
-      .search-header{
-        top: 0;
-        right: 0;
-      }
-    }
-    .search-layout-content{
-      padding: 24px 24px 0;
-      min-height: auto;
-      background-color: white;
-    }
-    .setting{
-      background-color: @primary-color;
-      color: @base-bg-color;
-      border-radius: 5px 0 0 5px;
-      line-height: 40px;
-      font-size: 22px;
-      width: 40px;
-      height: 40px;
-      box-shadow: -2px 0 8px @shadow-color;
+.search-layout {
+  &.fixed-side-bar {
+    height: 100vh;
+
+    .search-layout-main {
+      overflow: scroll;
     }
   }
-  .tree-view {
-    position: relative;
-    // width: 8%;
+
+  .search-layout-main {
+    .search-header {
+      top: 0;
+      right: 0;
+    }
   }
+
+  .search-layout-content {
+    //padding: 24px 24px 0;
+    min-height: auto;
+    background-color: white;
+  }
+
+  .setting {
+    background-color: @primary-color;
+    color: @base-bg-color;
+    border-radius: 5px 0 0 5px;
+    line-height: 40px;
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+    box-shadow: -2px 0 8px @shadow-color;
+  }
+}
+
+.tree-view {
+  position: relative;
+  // width: 8%;
+}
 </style>

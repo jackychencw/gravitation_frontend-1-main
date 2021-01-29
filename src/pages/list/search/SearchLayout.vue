@@ -2,7 +2,8 @@
     <div>
       <div class="search-head">
         <div class="search-input">
-          <a-input-search class="search-ipt" style="width: 522px" placeholder="请输入..." size="large" enterButton="搜索" />
+          <a-input-search class="search-ipt" style="width: 522px" placeholder="请输入..." size="large"
+                          enterButton="搜索" @submit="handleSearch" />
         </div>
         <div style="padding: 0 24px">
           <a-tabs :tabBarStyle="{margin: 0}" @change="navigate" :activeKey="activeKey">
@@ -36,6 +37,9 @@ export default {
     }
   },
   methods: {
+    handleSearch() {
+      console.log('search')
+    },
     navigate (key) {
       switch (key) {
         case '1':

@@ -1,26 +1,28 @@
 <template>
-  <a-layout-header :class="[headerTheme, 'search-header']">
-    <div :class="['search-header-wide', layout]">
+  <a-layout-header :class="[headerTheme, 'admin-header']">
+    <div :class="['admin-header-wide', layout]">
       <router-link v-if="isMobile || layout === 'head'" to="/" :class="['logo', isMobile ? null : 'pc', headerTheme]">
-        <img id="logoimg" width="50" src="@/assets/img/logo.svg" />
-        <!-- <h1 id="logotitle" v-if="!isMobile">{{systemName}}</h1> -->
+        <img id="logoimg" width="50" src="@/assets/img/logo.svg"/>
+        <h1 id="logotitle" v-if="!isMobile">{{ systemName }}</h1>
       </router-link>
       <div id="search">
-          <header-search class="header-item" /> 
+        <header-search class="header-item" @do-search="handleDoSearch" :searching="searching"/>
       </div>
-      
-      <a-divider v-if="isMobile" type="vertical" />
-      <a-icon v-if="layout === 'side'" class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'" @click="toggleCollapse"/>
-      <div v-if="!isMobile" :class="['search-header-right', headerTheme]">
-          <i-menu class="head-menu" style="height: 64px; line-height: 64px;box-shadow: none" @i18nComplete="setRoutesI18n" :i18n="menuI18n" :theme="headerTheme" mode="horizontal" :options="menuData" @select="onSelect"/>
-          <a-dropdown class="lang header-item">
-            <div>
-              <a-icon type="global"/> {{langAlias}}
-            </div>
-            <a-menu @click="val => setLang(val.key)" :selected-keys="[lang]" slot="overlay">
-              <a-menu-item v-for=" lang in langList" :key="lang.key">{{lang.key.toLowerCase() + ' ' + lang.name}}</a-menu-item>
-            </a-menu>
-          </a-dropdown>
+
+      <a-divider v-if="isMobile" type="vertical"/>
+      <a-icon v-if="layout === 'side'" class="trigger" :type="collapsed ? 'menu-unfold' : 'menu-fold'"
+              @click="toggleCollapse"/>
+      <div v-if="!isMobile" :class="['admin-header-right', headerTheme]">
+        <a-dropdown class="lang header-item">
+          <div>
+            <a-icon type="global"/>
+            {{ langAlias }}
+          </div>
+          <a-menu @click="val => setLang(val.key)" :selected-keys="[lang]" slot="overlay">
+            <a-menu-item v-for=" lang in langList" :key="lang.key">{{ lang.key.toLowerCase() + ' ' + lang.name }}
+            </a-menu-item>
+          </a-menu>
+        </a-dropdown>
       </div>
     </div>
   </a-layout-header>
@@ -30,14 +32,14 @@
 import HeaderSearch from './HeaderSearch'
 // import HeaderNotice from './HeaderNotice'
 // import HeaderAvatar from './HeaderlAvatar'
-import IMenu from '@/components/menu/menu'
-import {mapState, mapMutations} from 'vuex'
+// import IMenu from '@/components/menu/menu'
+import {mapMutations, mapState} from 'vuex'
 
 export default {
   name: 'SearchHeader',
-  components: {IMenu, HeaderSearch},
+  components: {HeaderSearch},
   // components: {IMenu, HeaderAvatar, HeaderNotice},
-  props: ['collapsed', 'menuData'],
+  props: ['collapsed', 'menuData', 'searching'],
   inject: ['menuI18n'],
   data() {
     return {
@@ -50,7 +52,7 @@ export default {
   },
   computed: {
     ...mapState('setting', ['theme', 'isMobile', 'layout', 'systemName', 'lang']),
-    headerTheme () {
+    headerTheme() {
       if (this.layout == 'side' && this.theme.mode == 'dark' && !this.isMobile) {
         return 'light'
       }
@@ -62,10 +64,13 @@ export default {
     }
   },
   methods: {
-    toggleCollapse () {
+    handleDoSearch(query) {
+      this.$emit("do-search", query)
+    },
+    toggleCollapse() {
       this.$emit('toggleCollapse')
     },
-    onSelect (obj) {
+    onSelect(obj) {
       this.$emit('menuSelect', obj)
     },
     ...mapMutations('setting', ['setLang', 'setRoutesI18n'])

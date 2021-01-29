@@ -2,17 +2,20 @@
   <div class="tag-select">
     <tag-select-option @click="toggleCheck">全部</tag-select-option>
     <slot></slot>
-    <a @click="toggle" v-show="showTrigger" ref="trigger" class="trigger">展开<a-icon style="margin-left: 5px" :type="collapsed ? 'down' : 'up'"/></a>
+    <a @click="toggle" v-show="showTrigger" ref="trigger" class="trigger">展开
+      <a-icon style="margin-left: 5px" :type="collapsed ? 'down' : 'up'"/>
+    </a>
   </div>
 </template>
 
 <script>
 import TagSelectOption from './TagSelectOption'
+
 export default {
   name: 'TagSelect',
   Option: TagSelectOption,
   components: {TagSelectOption},
-  data () {
+  data() {
     return {
       showTrigger: false,
       collapsed: true,
@@ -28,7 +31,7 @@ export default {
       this.$el.style.maxHeight = val ? '39px' : '78px'
     }
   },
-  mounted () {
+  mounted() {
     let _this = this
     // 此处延迟执行，是为解决mouted未完全完成情况下引发的trigger显示bug
     setTimeout(() => {
@@ -43,19 +46,19 @@ export default {
     }
   },
   methods: {
-    needTrigger () {
+    needTrigger() {
       return this.$el.clientHeight < this.$el.scrollHeight || this.$el.scrollHeight > 39
     },
-    toggle () {
+    toggle() {
       this.collapsed = !this.collapsed
     },
-    getAllTags () {
+    getAllTags() {
       const tagList = this.$children.filter((item) => {
         return item.isTagSelectOption
       })
       return tagList
     },
-    toggleCheck () {
+    toggleCheck() {
       this.checkAll = !this.checkAll
       const tagList = this.getAllTags()
       tagList.forEach((item) => {
@@ -67,17 +70,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .tag-select{
-    user-select: none;
-    position: relative;
-    overflow: hidden;
-    max-height: 39px;
-    padding-right: 50px;
-    display: inline-block;
-  }
-  .trigger{
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+.tag-select {
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+  max-height: 39px;
+  padding-right: 50px;
+  display: inline-block;
+}
+
+.trigger {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 </style>

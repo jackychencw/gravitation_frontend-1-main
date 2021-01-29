@@ -3,7 +3,7 @@
     <search-form />
     <a-card :bordered="false">
       <a-list itemLayout="vertical">
-        <a-list-item :key="n" v-for="n in 10">
+        <a-list-item v-for="n in 10" :key="n">
           <a-list-item-meta title="Alipay">
             <div slot="description">
               <a-tag >Ant Design</a-tag>

@@ -1,11 +1,12 @@
 <template>
-  <common-layout>
+<!--  <blank-view>-->
+  <div>
     <div class="top">
       <div class="header">
         <img alt="logo" class="logo" src="@/assets/img/logo.svg" />
         <span class="title">{{systemName}}</span>
       </div>
-      <div class="desc">Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+<!--      <div class="desc">Ant Design 是西湖区最具影响力的 Web 设计规范</div>-->
     </div>
     <div class="login">
       <a-form @submit="onSubmit" :autoFormCreate="(form) => this.form = form">
@@ -65,15 +66,20 @@
         </div>
       </a-form>
     </div>
-  </common-layout>
+<!--  </blank-view>-->
+  </div>
 </template>
 
 <script>
-import CommonLayout from '@/layouts/CommonLayout'
+// import CommonLayout from '@/layouts/CommonLayout'
+// import BlankView from '@/layouts/BlankView'
+import '@/mock'
+import axios from 'axios'
+import {EventBus} from '@/event-bus.js';
 
 export default {
   name: 'Login',
-  components: {CommonLayout},
+  // components: {BlankView },
   data () {
     return {
       logging: false,
@@ -91,7 +97,7 @@ export default {
       this.form.validateFields((err) => {
         if (!err) {
           this.logging = true
-          this.$axios.post('/login', {
+          axios.post('/login', {
             name: this.form.getFieldValue('name'),
             password: this.form.getFieldValue('password')
           }).then((res) => {
@@ -99,7 +105,9 @@ export default {
             const result = res.data
             if (result.code >= 0) {
               const user = result.data.user
-              this.$router.push('/dashboard/workplace')
+              this.$router.push('/search')
+              EventBus.$emit('login-success')
+              // this.$router.push('/')
               this.$store.commit('account/setUser', user)
               this.$message.success(result.message, 3)
             } else {

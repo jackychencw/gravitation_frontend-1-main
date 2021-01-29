@@ -83,6 +83,7 @@ import PageLayout from '../../../layouts/PageLayout'
 import HeadInfo from '../../../components/tool/HeadInfo'
 import Radar from '../../../components/chart/Radar'
 import {mapState} from 'vuex'
+import axios from 'axios'
 
 export default {
   name: 'WorkPlace',
@@ -117,7 +118,7 @@ export default {
   },
   methods: {
     getProjectList () {
-      this.$axios({
+      axios({
         method: 'get',
         url: '/project'
       }).then(res => {
@@ -126,7 +127,7 @@ export default {
       })
     },
     getActivites () {
-      this.$axios({
+      axios({
         method: 'get',
         url: '/work/activity'
       }).then(res => {
@@ -134,7 +135,7 @@ export default {
       })
     },
     getTeams () {
-      this.$axios({
+      axios({
         method: 'get',
         url: '/work/team'
       }).then(res => {

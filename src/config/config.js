@@ -4,7 +4,7 @@ module.exports = {
     color: '#13c2c2',
     mode: 'light'
   },
-  layout:'head',
+  layout:'side',
   multiPage: true,
   animate: {
     name: 'roll',

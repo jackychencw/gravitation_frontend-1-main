@@ -17,9 +17,11 @@
     <div class="tabs-view-content">
       <page-toggle-transition :disabled="animate.disabled" :animate="animate.name" :direction="animate.direction">
         <keep-alive :exclude="dustbins" v-if="multiPage">
-          <router-view />
+          <slot/>
+<!--          <router-view/>-->
         </keep-alive>
-        <router-view v-else />
+        <slot/>
+<!--        <router-view v-else />-->
       </page-toggle-transition>
     </div>
   </admin-layout>
@@ -50,8 +52,15 @@ export default {
     ...mapState('setting', ['multiPage', 'animate', 'layout', 'dustbins'])
   },
   created () {
+    const pageList = this.$store.state.setting.history.pageList
     const route = this.$route
-    this.pageList.push(route)
+    if (pageList) {
+      this.pageList = pageList
+    } else {
+      this.pageList.push(route)
+    }
+
+    console.log('pageList', this.pageList)
     this.activePage = route.fullPath
   },
   watch: {
@@ -63,6 +72,7 @@ export default {
       } else if (this.pageList.findIndex(item => item.fullPath == newRoute.fullPath) == -1) {
         this.pageList.push(newRoute)
       }
+      this.$store.state.setting.history.pageList = this.pageList
     },
     'multiPage': function (newVal) {
       if (!newVal) {
